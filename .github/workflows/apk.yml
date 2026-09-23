@@ -1,0 +1,16 @@
+name: APK Agentes Linux
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir:.
+          buildozer_version: stable
+          command: android debug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: APK-Agentes-Linux
+          path:./bin/*.apk
